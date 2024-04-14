@@ -145,7 +145,7 @@ func (suite *LedgerTestSuite) NewKeyringAndCtxs(krHome string, input io.Reader, 
 func (suite *LedgerTestSuite) ethermintAddKeyCmd() *cobra.Command {
 	cmd := keys.AddKeyCommand()
 
-	algoFlag := cmd.Flag(flags.FlagKeyAlgorithm)
+	algoFlag := cmd.Flag(flags.FlagKeyType)
 	algoFlag.DefValue = string(hd.EthSecp256k1Type)
 
 	err := algoFlag.Value.Set(string(hd.EthSecp256k1Type))
