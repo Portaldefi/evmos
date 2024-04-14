@@ -42,7 +42,6 @@ import (
 	"github.com/evmos/evmos/v11/x/erc20/types"
 
 	capabilitytypes "github.com/cosmos/cosmos-sdk/x/capability/types"
-	transfertypes "github.com/cosmos/ibc-go/v7/modules/apps/transfer/types"
 	clienttypes "github.com/cosmos/ibc-go/v7/modules/core/02-client/types"
 	channeltypes "github.com/cosmos/ibc-go/v7/modules/core/04-channel/types"
 	porttypes "github.com/cosmos/ibc-go/v7/modules/core/05-port/types"
@@ -198,20 +197,25 @@ func (suite *KeeperTestSuite) CommitAndBeginBlockAfter(t time.Duration) {
 	suite.queryClientEvm = evm.NewQueryClient(queryHelper)
 }
 
-var _ transfertypes.ChannelKeeper = &MockChannelKeeper{}
-
 type MockChannelKeeper struct {
 	mock.Mock
 }
 
+//nolint:revive // allow unused parameters to indicate expected signature
 func (b *MockChannelKeeper) GetChannel(ctx sdk.Context, srcPort, srcChan string) (channel channeltypes.Channel, found bool) {
 	args := b.Called(mock.Anything, mock.Anything, mock.Anything)
 	return args.Get(0).(channeltypes.Channel), true
 }
 
+//nolint:revive // allow unused parameters to indicate expected signature
 func (b *MockChannelKeeper) GetNextSequenceSend(ctx sdk.Context, portID, channelID string) (uint64, bool) {
 	_ = b.Called(mock.Anything, mock.Anything, mock.Anything)
 	return 1, true
+}
+
+//nolint:revive // allow unused parameters to indicate expected signature
+func (b *MockChannelKeeper) GetAllChannelsWithPortPrefix(ctx sdk.Context, portPrefix string) []channeltypes.IdentifiedChannel {
+	return []channeltypes.IdentifiedChannel{}
 }
 
 var _ porttypes.ICS4Wrapper = &MockICS4Wrapper{}
