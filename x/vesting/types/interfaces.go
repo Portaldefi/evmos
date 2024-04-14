@@ -72,5 +72,5 @@ type StakingKeeper interface {
 	GetDelegatorUnbonding(ctx sdk.Context, delegator sdk.AccAddress) math.Int
 	GetDelegatorBonded(ctx sdk.Context, delegator sdk.AccAddress) math.Int
 	// Hooks
-	stakingtypes.StakingHooks
+	//stakingtypes.StakingHooks
 }
