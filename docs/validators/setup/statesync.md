@@ -78,7 +78,7 @@ Once all chunks have been applied, Tendermint will call the [`Info` ABCI method]
 
 How snapshots are actually restored is entirely up to the application, but will generally be the inverse of how they are generated. Note, however, that Tendermint only verifies snapshots after all chunks have been restored, and does not reject any P2P peers on its own. As long as the trusted hash and application code are correct, it is not possible for an adversary to cause a state synced node to have incorrect state when joining consensus, but it is up to the application to counteract state sync denial-of-service (eg. by implementing incremental verification, rejecting invalid peers).
 
-Note that state synced nodes will have a truncated block history starting at the height of the restored snapshot, and there is currently no [backfill of all block data](https://github.com/tendermint/tendermint/issues/4629). Networks should consider broader implications of this, and may want to ensure at least a few archive nodes retain a complete block history, for both auditability and backup.
+Note that state synced nodes will have a truncated block history starting at the height of the restored snapshot, and there is currently no [backfill of all block data](https://github.com/cometbft/cometbft/issues/4629). Networks should consider broader implications of this, and may want to ensure at least a few archive nodes retain a complete block history, for both auditability and backup.
 
 ## Cosmos SDK State Sync
 
@@ -184,7 +184,7 @@ SNAP_RPC1="http://bd-evmos-testnet-state-sync-node-01.bdnodes.net:26657"
 SNAP_RPC="http://bd-evmos-testnet-state-sync-node-02.bdnodes.net:26657"
 CHAIN_ID="evmos_9000-4"
 PEER="3a6b22e1569d9f85e9e97d1d204a1c457d860926@bd-evmos-testnet-seed-node-01.bdnodes.net:26656"
-wget -O $HOME/genesis.json https://archive.evmos.dev/evmos_9000-4/genesis.json 
+wget -O $HOME/genesis.json https://archive.evmos.dev/evmos_9000-4/genesis.json
 ```
 
 ## Use commands below for Mainnet setup
@@ -194,14 +194,14 @@ SNAP_RPC1="http://bd-evmos-mainnet-state-sync-us-01.bdnodes.net:26657"
 SNAP_RPC="http://bd-evmos-mainnet-state-sync-eu-01.bdnodes.net:26657"
 CHAIN_ID="evmos_9001-2"
 PEER="96557e26aabf3b23e8ff5282d03196892a7776fc@bd-evmos-mainnet-state-sync-us-01.bdnodes.net,dec587d55ff38827ebc6312cedda6085c59683b6@bd-evmos-mainnet-state-sync-eu-01.bdnodes.net"
-wget -O $HOME/genesis.json https://archive.evmos.org/mainnet/genesis.json 
+wget -O $HOME/genesis.json https://archive.evmos.org/mainnet/genesis.json
 ```
 
 ### Install evmosd
 
 ```bash
-git clone https://github.com/evmos/evmos.git && \ 
-cd evmos && \ 
+git clone https://github.com/evmos/evmos.git && \
+cd evmos && \
 make install
 ```
 

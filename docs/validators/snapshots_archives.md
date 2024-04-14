@@ -15,21 +15,22 @@ archived [9001-1 mainnet](https://github.com/evmos/mainnet/tree/main/evmos_9001-
 
 ### Snapshots
 
-| Name        | URL                                                                     |
-| -------------|------------------------------------------------------------------------ |
-| `Staketab`   | [github.com/staketab/nginx-cosmos-snap](https://github.com/staketab/nginx-cosmos-snap/blob/main/docs/evmos.md) |
-| `Polkachu`   | [polkachu.com](https://www.polkachu.com/tendermint_snapshots/evmos)                   |
-| `Nodes Guru` | [snapshots.nodes.guru/evmos_9001-2/](snapshots.nodes.guru/evmos_9001-2/)                   |
-| `Notional`   | [mainnet/pruned/evmos_9001-2(pebbledb)](https://snapshot.notional.ventures/evmos/) <br> [mainnet/archive/evmos_9001-2(pebbledb)](https://snapshot.notional.ventures/evmos-archive/) <br> [testnet/archive/evmos_9000-4(pebbledb)](https://snapshot.notional.ventures/evmos-testnet-archive/)                   |
+| Name         | URL                                                                                                                                                                                                                                                                                          |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Staketab`   | [github.com/staketab/nginx-cosmos-snap](https://github.com/staketab/nginx-cosmos-snap/blob/main/docs/evmos.md)                                                                                                                                                                               |
+| `Polkachu`   | [polkachu.com](https://www.polkachu.com/tendermint_snapshots/evmos)                                                                                                                                                                                                                          |
+| `Nodes Guru` | [snapshots.nodes.guru/evmos_9001-2/](snapshots.nodes.guru/evmos_9001-2/)                                                                                                                                                                                                                     |
+| `Notional`   | [mainnet/pruned/evmos_9001-2(pebbledb)](https://snapshot.notional.ventures/evmos/) <br> [mainnet/archive/evmos_9001-2(pebbledb)](https://snapshot.notional.ventures/evmos-archive/) <br> [testnet/archive/evmos_9000-4(pebbledb)](https://snapshot.notional.ventures/evmos-testnet-archive/) |
 
 ### Archives
+
 <!-- markdown-link-check-disable -->
 
-| Name           | URL                                                                             |
-| ---------------|---------------------------------------------------------------------------------|
-| `Nodes Guru`   | [snapshots.nodes.guru/evmos_9001-1](https://snapshots.nodes.guru/evmos_9001-1/)                                    |
-| `Polkachu`     | [polkachu.com/tendermint_snapshots/evmos](https://www.polkachu.com/tendermint_snapshots/evmos)                           |
-| `Forbole`      | [bigdipper.live/evmos_9001-1](https://s3.bigdipper.live.eu-central-1.linodeobjects.com/evmos_9001-1.tar.lz4) |
+| Name         | URL                                                                                                          |
+| ------------ | ------------------------------------------------------------------------------------------------------------ |
+| `Nodes Guru` | [snapshots.nodes.guru/evmos_9001-1](https://snapshots.nodes.guru/evmos_9001-1/)                              |
+| `Polkachu`   | [polkachu.com/tendermint_snapshots/evmos](https://www.polkachu.com/tendermint_snapshots/evmos)               |
+| `Forbole`    | [bigdipper.live/evmos_9001-1](https://s3.bigdipper.live.eu-central-1.linodeobjects.com/evmos_9001-1.tar.lz4) |
 
 To access snapshots and archives, follow the process below (this code snippet is to access a snapshot of the current network, `evmos_9001-2`, from Nodes Guru):
 
@@ -46,7 +47,7 @@ To use PebbleDB instead of GoLevelDB when using snapshots from Notional:
 Build:
 
 ```bash
-go mod edit -replace github.com/tendermint/tm-db=github.com/baabeetaa/tm-db@pebble
+go mod edit -replace github.com/cometbft/cometbft-db=github.com/baabeetaa/tm-db@pebble
 go mod tidy
 go install -tags pebbledb -ldflags "-w -s -X github.com/cosmos/cosmos-sdk/types.DBBackend=pebbledb" ./...
 ```

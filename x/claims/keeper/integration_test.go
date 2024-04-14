@@ -30,12 +30,12 @@ import (
 	incentivestypes "github.com/evmos/evmos/v11/x/incentives/types"
 	inflationtypes "github.com/evmos/evmos/v11/x/inflation/types"
 
+	abci "github.com/cometbft/cometbft/abci/types"
 	authsigning "github.com/cosmos/cosmos-sdk/x/auth/signing"
 	"github.com/evmos/ethermint/server/config"
 	evm "github.com/evmos/ethermint/x/evm/types"
 	"github.com/evmos/evmos/v11/contracts"
 	"github.com/evmos/evmos/v11/x/claims/types"
-	abci "github.com/tendermint/tendermint/abci/types"
 )
 
 var _ = Describe("Claiming", Ordered, func() {

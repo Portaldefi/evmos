@@ -1,20 +1,20 @@
 # Evmos Contributor Guidelines
 
-* [General Procedure](#general_procedure)
-* [Architecture Decision Records (ADR)](#adr)
-* [Forking](#forking)
-* [Dependencies](#dependencies)
-* [Protobuf](#protobuf)
-* [Development Procedure](#dev_procedure)
-* [Testing](#testing)
-* [Updating Documentation](#updating_doc)
-* [Branching Model and Release](#braching_model_and_release)
-    * [Commit messages](#commit_messages)
-    * [PR Targeting](#pr_targeting)
-    * [Pull Requests](#pull_requests)
-    * [Process for reviewing PRs](#reviewing_prs)
-    * [Pull Merge Procedure](#pull_merge_procedure)
-    * [Release Procedure](#release_procedure)
+- [General Procedure](#general_procedure)
+- [Architecture Decision Records (ADR)](#adr)
+- [Forking](#forking)
+- [Dependencies](#dependencies)
+- [Protobuf](#protobuf)
+- [Development Procedure](#dev_procedure)
+- [Testing](#testing)
+- [Updating Documentation](#updating_doc)
+- [Branching Model and Release](#braching_model_and_release)
+  - [Commit messages](#commit_messages)
+  - [PR Targeting](#pr_targeting)
+  - [Pull Requests](#pull_requests)
+  - [Process for reviewing PRs](#reviewing_prs)
+  - [Pull Merge Procedure](#pull_merge_procedure)
+  - [Release Procedure](#release_procedure)
 
 ## <span id="general_procedure">General Procedure</span>
 
@@ -31,27 +31,27 @@ a smooth workflow for all contributors, the following general procedure for cont
    resolving.
 2. Participate in thoughtful discussion on that issue.
 3. If you would like to contribute:
-    1. If the issue is a proposal, ensure that the proposal has been accepted by the Evmos team.
-    2. Ensure that nobody else has already begun working on the same issue. If someone already has, please make sure to
-       contact the individual to collaborate.
-    3. If nobody has been assigned the issue and you would like to work on it, make a comment on the issue to inform the
-       community of your intentions to begin work. Ideally, wait for confirmation that no one has started it. However,
-       if you are eager and do not get a prompt response, feel free to dive on in!
-    4. Follow standard Github best practices:
-        1. Fork the repo
-        2. Branch from the HEAD of `development`(For core developers working within the evmos repo, to ensure a
-           clear ownership of branches, branches must be named with the convention `{moniker}/{issue#}-branch-name`).
-        3. Make commits
-        4. Submit a PR to `development`
-    5. Be sure to submit the PR in `Draft` mode. Submit your PR early, even if it's incomplete as this indicates to the
-       community you're working on something and allows them to provide comments early in the development process.
-    6. When the code is complete it can be marked `Ready for Review`.
-    7. Be sure to include a relevant change log entry in the `Unreleased` section of `CHANGELOG.md` (see file for log
-       format).
-    8. Please make sure to run `make format` before every commit - the easiest way to do this is having your editor run
-       it for you upon saving a file. Additionally, please ensure that your code is lint compliant by running `make lint`
-       . There are CI tests built into the Evmos repository and all PR’s will require that these tests pass before
-       they are able to be merged.
+   1. If the issue is a proposal, ensure that the proposal has been accepted by the Evmos team.
+   2. Ensure that nobody else has already begun working on the same issue. If someone already has, please make sure to
+      contact the individual to collaborate.
+   3. If nobody has been assigned the issue and you would like to work on it, make a comment on the issue to inform the
+      community of your intentions to begin work. Ideally, wait for confirmation that no one has started it. However,
+      if you are eager and do not get a prompt response, feel free to dive on in!
+   4. Follow standard Github best practices:
+      1. Fork the repo
+      2. Branch from the HEAD of `development`(For core developers working within the evmos repo, to ensure a
+         clear ownership of branches, branches must be named with the convention `{moniker}/{issue#}-branch-name`).
+      3. Make commits
+      4. Submit a PR to `development`
+   5. Be sure to submit the PR in `Draft` mode. Submit your PR early, even if it's incomplete as this indicates to the
+      community you're working on something and allows them to provide comments early in the development process.
+   6. When the code is complete it can be marked `Ready for Review`.
+   7. Be sure to include a relevant change log entry in the `Unreleased` section of `CHANGELOG.md` (see file for log
+      format).
+   8. Please make sure to run `make format` before every commit - the easiest way to do this is having your editor run
+      it for you upon saving a file. Additionally, please ensure that your code is lint compliant by running `make lint`
+      . There are CI tests built into the Evmos repository and all PR’s will require that these tests pass before
+      they are able to be merged.
 
 **Note**: for very small or blatantly obvious problems (such as typos), it is not required to open an issue to submit a
 PR, but be aware that for more complex problems/features, if a PR is opened before an adequate design discussion has
@@ -66,7 +66,7 @@ When proposing an architecture decision for Evmos, please create
 an [ADR](https://github.com/evmos/evmos/blob/main/docs/architecture/README.md) so further discussions can be
 made. We are following this process so all involved parties are in agreement before any party begins coding the proposed
 implementation. If you would like to see some examples of how these are written refer
-to [Tendermint ADRs](https://github.com/tendermint/tendermint/tree/master/docs/architecture).
+to [Tendermint ADRs](https://github.com/cometbft/cometbft/tree/master/docs/architecture).
 
 ## <span id="forking">Forking</span>
 
@@ -149,10 +149,7 @@ For example, in vscode your `.vscode/settings.json` should look like:
 ```json
 {
   "protoc": {
-    "options": [
-      "--proto_path=${workspaceRoot}/proto",
-      "--proto_path=${workspaceRoot}/third_party/proto"
-    ]
+    "options": ["--proto_path=${workspaceRoot}/proto", "--proto_path=${workspaceRoot}/third_party/proto"]
   }
 }
 ```
@@ -212,12 +209,12 @@ All PRs require two Reviews before merge. When reviewing PRs, please use the fol
    locally and thoroughly reviewed it.
 2. `Approval` through the GH UI means that you understand the code, documentation/spec is updated in the right places,
    you have pulled down and tested the code locally. In addition:
-    * You must think through whether any added code could be partially combined (DRYed) with existing code.
-    * You must think through any potential security issues or incentive-compatibility flaws introduced by the changes.
-    * Naming convention must be consistent with the rest of the codebase.
-    * Code must live in a reasonable location, considering dependency structures (e.g. not importing testing modules in
-      production code, or including example code modules in production code).
-    * If you approve of the PR, you are responsible for fixing any of the issues mentioned here.
+   - You must think through whether any added code could be partially combined (DRYed) with existing code.
+   - You must think through any potential security issues or incentive-compatibility flaws introduced by the changes.
+   - Naming convention must be consistent with the rest of the codebase.
+   - Code must live in a reasonable location, considering dependency structures (e.g. not importing testing modules in
+     production code, or including example code modules in production code).
+   - If you approve of the PR, you are responsible for fixing any of the issues mentioned here.
 3. If you are only making "surface level" reviews, submit any notes as `Comments` without adding a review.
 
 ### <span id="pull_merge_procedure">Pull Merge Procedure</span>
