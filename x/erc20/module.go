@@ -20,7 +20,6 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"math/rand"
 
 	abci "github.com/cometbft/cometbft/abci/types"
 	"github.com/cosmos/cosmos-sdk/client"
@@ -135,16 +134,8 @@ func (am AppModule) NewHandler() sdk.Handler {
 	return NewHandler(&am.keeper)
 }
 
-func (am AppModule) Route() sdk.Route {
-	return sdk.NewRoute(types.RouterKey, am.NewHandler())
-}
-
 func (am AppModule) QuerierRoute() string {
 	return types.RouterKey
-}
-
-func (am AppModule) LegacyQuerierHandler(amino *codec.LegacyAmino) sdk.Querier {
-	return nil
 }
 
 func (am AppModule) RegisterServices(cfg module.Configurator) {
@@ -187,10 +178,6 @@ func (am AppModule) GenerateGenesisState(input *module.SimulationState) {
 
 func (am AppModule) ProposalContents(simState module.SimulationState) []simtypes.WeightedProposalContent {
 	return []simtypes.WeightedProposalContent{}
-}
-
-func (am AppModule) RandomizedParams(r *rand.Rand) []simtypes.ParamChange {
-	return []simtypes.ParamChange{}
 }
 
 func (am AppModule) RegisterStoreDecoder(decoderRegistry sdk.StoreDecoderRegistry) {
