@@ -13,7 +13,6 @@ import (
 	"github.com/cometbft/cometbft/version"
 	client "github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/tx"
-	"github.com/cosmos/cosmos-sdk/codec"
 	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
 	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
@@ -305,7 +304,6 @@ func createEIP712CosmosTx(
 	// GenerateTypedData TypedData
 	registry := codectypes.NewInterfaceRegistry()
 	types.RegisterInterfaces(registry)
-	ethermintCodec := codec.NewProtoCodec(registry)
 	cryptocodec.RegisterInterfaces(registry)
 
 	coinAmount := sdk.NewCoin(evmtypes.DefaultEVMDenom, sdk.NewInt(20))
@@ -314,9 +312,7 @@ func createEIP712CosmosTx(
 
 	fee := legacytx.NewStdFee(gas, amount)
 	data := legacytx.StdSignBytes("evmos_9000-1", 0, 0, 0, fee, msgs, "", nil)
-	typedData, err := eip712.WrapTxToTypedData(ethermintCodec, 9000, msgs[0], data, &eip712.FeeDelegationOptions{
-		FeePayer: from,
-	})
+	typedData, err := eip712.WrapTxToTypedData(9000, data)
 	if err != nil {
 		return nil, err
 	}

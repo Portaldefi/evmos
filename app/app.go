@@ -543,10 +543,10 @@ func NewEvmos(
 		),
 	)
 
-	// app.VestingKeeper = vestingkeeper.NewKeeper(
-	// 	keys[vestingtypes.StoreKey], appCodec,
-	// 	app.AccountKeeper, app.BankKeeper, app.StakingKeeper,
-	// )
+	app.VestingKeeper = vestingkeeper.NewKeeper(
+		keys[vestingtypes.StoreKey], appCodec,
+		app.AccountKeeper, app.BankKeeper, app.StakingKeeper,
+	)
 
 	app.Erc20Keeper = erc20keeper.NewKeeper(
 		keys[erc20types.StoreKey], appCodec, authtypes.NewModuleAddress(govtypes.ModuleName),

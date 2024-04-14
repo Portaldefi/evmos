@@ -91,7 +91,7 @@ func (suite *UpgradeTestSuite) setupEscrowAccounts(accCount int) {
 
 		// set accounts as BaseAccounts
 		baseAcc := authtypes.NewBaseAccountWithAddress(addr)
-		err := baseAcc.SetAccountNumber(suite.app.AccountKeeper.GetNextAccountNumber(suite.ctx))
+		err := baseAcc.SetAccountNumber(suite.app.AccountKeeper.NextAccountNumber(suite.ctx))
 		suite.Require().NoError(err)
 		expAccNum[i] = baseAcc.AccountNumber
 		suite.app.AccountKeeper.SetAccount(suite.ctx, baseAcc)
@@ -107,9 +107,9 @@ func (suite *UpgradeTestSuite) setValidators(validatorsAddr []string) {
 		validator, err := stakingtypes.NewValidator(valAddr, suite.consKey, stakingtypes.Description{})
 		suite.Require().NoError(err)
 
-		validator = stakingkeeper.TestingUpdateValidator(suite.app.StakingKeeper, suite.ctx, validator, true)
+		validator = stakingkeeper.TestingUpdateValidator(&suite.app.StakingKeeper, suite.ctx, validator, true)
 
-		err = suite.app.StakingKeeper.AfterValidatorCreated(suite.ctx, validator.GetOperator())
+		err = suite.app.StakingKeeper.Hooks().AfterValidatorCreated(suite.ctx, validator.GetOperator())
 		suite.Require().NoError(err)
 		err = suite.app.StakingKeeper.SetValidatorByConsAddr(suite.ctx, validator)
 		suite.Require().NoError(err)
