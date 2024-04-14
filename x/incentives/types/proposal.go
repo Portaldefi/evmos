@@ -40,8 +40,6 @@ var (
 func init() {
 	govv1beta1.RegisterProposalType(ProposalTypeRegisterIncentive)
 	govv1beta1.RegisterProposalType(ProposalTypeCancelIncentive)
-	govv1beta1.ModuleCdc.Amino.RegisterConcrete(&RegisterIncentiveProposal{}, "incentives/RegisterIncentiveProposal", nil)
-	govv1beta1.ModuleCdc.Amino.RegisterConcrete(&CancelIncentiveProposal{}, "incentives/CancelIncentiveProposal", nil)
 }
 
 // NewRegisterIncentiveProposal returns new instance of RegisterIncentiveProposal
